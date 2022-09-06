@@ -1,0 +1,12 @@
+from select import select
+
+
+python -i beerlog\models.py
+
+beerlog
+
+dir(Beer)
+brewdog
+
+print(select(Beer))
+print(select(Beer).where(Beer.name == "Brewdog"))
