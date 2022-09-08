@@ -10,3 +10,23 @@ brewdog
 
 print(select(Beer))
 print(select(Beer).where(Beer.name == "Brewdog"))
+-----------------------------------------------------------
+
+    # valida campo de 1 a 10
+    @validator("flavor","image","cost")
+    def validate_ratings(cls, v, field):
+        if v < 1 or v > 10:
+            raise RuntimeError(f"{field.name} must be between 1 and 10")
+        return v
+
+    # valida a pontuação da bebida,
+    @validator("rate",always=True)
+    def calculete_rate(cls, v, values):
+        rate = mean([values["flavor"], values["image"], values["cost"]])
+        return int(rate)
+
+try:
+    brewdog = Beer(name="Brewdog", style="NEIPA", flavor=60, image=8, cost=8)
+except RuntimeError:
+    print("zika de mais")
+-----------------------------------------------------------
