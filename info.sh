@@ -30,3 +30,25 @@ try:
 except RuntimeError:
     print("zika de mais")
 -----------------------------------------------------------
+insert into Beer (name, style, flavor, image, cost, rate, data) values ("Brewdog", "NEIPA", 6, 5, 8, 6,"2022-09-09 9:23:50.219259");
+
+ipython 
+
+from sqlmodel import Session, select
+from beerlog.models import Beer
+from beerlog.database import engine
+
+with Session(engine) as session:
+	sql = select(Beer)
+	results = session.exec(sql)
+	for beer in results:
+		print(beer.name)
+
+with Session(engine) as session:
+	beer = Beer(name="two chefs", style="QPA", flavor=5, image=6, cost=6)
+	session.add(beer)
+	session.commit()
+	results = session.exec(select(Beer))
+	for beer in results:
+		print(beer.name)
+-----------------------------------------------------------
