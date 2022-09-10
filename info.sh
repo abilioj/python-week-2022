@@ -10,6 +10,8 @@ brewdog
 
 print(select(Beer))
 print(select(Beer).where(Beer.name == "Brewdog"))
+
+beerlog add "SuperBock" "Lager" --flavor=6 --image=3 --cost=8
 -----------------------------------------------------------
 
     # valida campo de 1 a 10
@@ -52,3 +54,5 @@ with Session(engine) as session:
 	for beer in results:
 		print(beer.name)
 -----------------------------------------------------------
+- formata o codigo
+black -l 79 beerlog
