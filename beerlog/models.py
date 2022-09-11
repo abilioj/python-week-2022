@@ -20,7 +20,7 @@ class Beer(SQLModel, table=True):
     image: int
     cost: int
     rate: int = 0
-    data: datetime = Field(default_factory=datetime.now)
+    date: datetime = Field(default_factory=datetime.now)
 
     # valida campo de 1 a 10
     @validator("flavor", "image", "cost")
