@@ -1,5 +1,7 @@
 
 
+ipython 
+
 python -i beerlog\models.py
 
 beerlog
@@ -13,6 +15,14 @@ print(select(Beer))
 print(select(Beer).where(Beer.name == "Brewdog"))
 
 beerlog add "SuperBock" "Lager" --flavor=6 --image=3 --cost=8
+beerlog add "shchoo" "beer" --flavor=6 --image=3 --cost=8
+beerlog add "Letra" "Sour" --flavor=8 --image=5 --cost=5
+beerlog add "Lagunitas" "IPA" --flavor=7 --image=6 --cost=8
+-----------------------------------------------------------	
+-- sql
+	insert into Beer (name, style, flavor, image, cost, rate, date)
+	 values ("Brewdog", "NEIPA", 6, 5, 8, 6,"2022-09-09 9:23:50.219259");
+
 -----------------------------------------------------------
 
     # valida campo de 1 a 10
@@ -32,10 +42,19 @@ beerlog add "SuperBock" "Lager" --flavor=6 --image=3 --cost=8
 	    brewdog = Beer(name="Brewdog", style="NEIPA", flavor=60, image=8, cost=8)
 	except RuntimeError:
 	    print("zika de mais")
------------------------------------------------------------
-	insert into Beer (name, style, flavor, image, cost, rate, data) values ("Brewdog", "NEIPA", 6, 5, 8, 6,"2022-09-09 9:23:50.219259");
+	----------------------------------------
+	# função do cli
+	import sys
+	from .config import settings
 
-	ipython 
+	def main():
+		print("Hello from", settings.NAME)
+		print(sys.argv[1:])
+	
+	----------------------------------------
+
+-----------------------------------------------------------
+	# -- CODE test ipython
 
 	from sqlmodel import Session, select
 	from beerlog.models import Beer
