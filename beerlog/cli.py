@@ -1,14 +1,17 @@
-import typer
 from typing import Optional
-from beerlog.core import add_beer_to_database, get_beers_from_database
 
-#formatar o retornou em tabela
-from rich.table import Table
+import typer
 from rich.console import Console
+
+# formatar o retornou em tabela
+from rich.table import Table
+
+from beerlog.core import add_beer_to_database, get_beers_from_database
 
 main = typer.Typer(help="Beer Management Application")
 
 console = Console()
+
 
 @main.command("add")
 def add(
@@ -43,4 +46,3 @@ def list_beers(style: Optional[str] = None):
         values = [str(getattr(beer, header)) for header in headers]
         table.add_row(*values)
     console.print(table)
-

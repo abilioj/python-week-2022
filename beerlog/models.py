@@ -1,12 +1,10 @@
 # from dataclasses import dataclass
-
-from email.policy import default
-from typing import Optional
-from sqlmodel import SQLModel, Field
-from sqlmodel import select
-from pydantic import validator
-from statistics import mean  # pra estatitica
 from datetime import datetime
+from statistics import mean  # pra estatitica
+from typing import Optional
+
+from pydantic import validator
+from sqlmodel import Field, SQLModel
 
 # @dataclass
 # class Beer:

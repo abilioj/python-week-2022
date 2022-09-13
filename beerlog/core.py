@@ -1,5 +1,7 @@
-from typing import Optional, List
+from typing import List, Optional
+
 from sqlmodel import select
+
 from beerlog.database import get_session
 from beerlog.models import Beer
 
@@ -15,8 +17,8 @@ def add_beer_to_database(
         session.commit()
     return True
 
-def get_beers_from_database() -> List[Beer]:
+
+def get_beers_from_database(style: Optional[str] = None) -> List[Beer]:
     with get_session() as session:
         sql = select(Beer)
         return list(session.exec(sql))
-

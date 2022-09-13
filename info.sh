@@ -1,6 +1,6 @@
 
 
-ipython 
+ipython
 
 python -i beerlog\models.py
 
@@ -18,7 +18,7 @@ beerlog add "SuperBock" "Lager" --flavor=6 --image=3 --cost=8
 beerlog add "shchoo" "beer" --flavor=6 --image=3 --cost=8
 beerlog add "Letra" "Sour" --flavor=8 --image=5 --cost=5
 beerlog add "Lagunitas" "IPA" --flavor=7 --image=6 --cost=8
------------------------------------------------------------	
+-----------------------------------------------------------
 -- sql
 	insert into Beer (name, style, flavor, image, cost, rate, date)
 	 values ("Brewdog", "NEIPA", 6, 5, 8, 6,"2022-09-09 9:23:50.219259");
@@ -50,7 +50,7 @@ beerlog add "Lagunitas" "IPA" --flavor=7 --image=6 --cost=8
 	def main():
 		print("Hello from", settings.NAME)
 		print(sys.argv[1:])
-	
+
 	----------------------------------------
 
 -----------------------------------------------------------
@@ -76,3 +76,19 @@ beerlog add "Lagunitas" "IPA" --flavor=7 --image=6 --cost=8
 -----------------------------------------------------------
 - formata o codigo
 black -l 79 beerlog
+
+flake8 beerlog
+################################################################################################################
+# api
+	# libs framework FastAPI
+	from fastapi import FastAPI
+
+	api = FastAPI(title="beerlog")
+
+	# Para executar precisamos de um servidor ASGI e para isso usaremos o uvicorn
+	poetry add uvicorn
+
+	# Agora podemos executar a api com
+	uvicorn beerlog.api:api --reload
+
+	# Ao acessar https://localhost:8000/docs veremos a página de docs da api, e também temos a página /redoc
