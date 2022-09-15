@@ -74,9 +74,13 @@ beerlog add "Lagunitas" "IPA" --flavor=7 --image=6 --cost=8
 		for beer in results:
 			print(beer.name)
 -----------------------------------------------------------
-- formata o codigo
-black -l 79 beerlog
+# organizar os imports
+isort --profile=black -m 3 beerlog/
 
+# Formatar o código
+black -l 79 beerlog tests
+
+# Verificar por erros de estilo
 flake8 beerlog
 ################################################################################################################
 # api
@@ -92,3 +96,31 @@ flake8 beerlog
 	uvicorn beerlog.api:api --reload
 
 	# Ao acessar https://localhost:8000/docs veremos a página de docs da api, e também temos a página /redoc
+################################################################################################################
+# test unitários
+# O pytest é o framework de testes mais utilizado pela comunidade e com ele podemos escrever diversos tipos de testes.
+poetry add pytest --dev
+
+export BEERLOG_DATABASE__url="sqlite:///testing.db" 
+
+pytest -v
+# ----------------------------------------------------------------
+# Testes funcionais (ou de integração)
+
+poetry add requests --dev
+
+beerlog add Skol KornPA --flavor=1 --image=1 --cost=2
+
+# tests/test_functional_cli.py
+# tests/test_functional_api.py
+poetry add requests --dev
+# ----------------------------------------------------------------
+# CI
+# Continuous Integration é o nome dado a uma prática de rodar testes a cada nova alteração no repositório,
+# a idéia é que desenvolvedores distribuidos possam integrar suas alterações continuamente pelo menos uma vez por dia.
+# Na prática não é bem assim que acontece, mas nós continuamos usando a sigla CI na verdade nós resignificamos a sigla 
+# CI e hoje essa palavra quer dizer esteira de testes automatizados.
+# No Github podemos configurar uma esteira de testes usando github actions.
+# em .github/workflows/ci.yaml podemos declarar no formato YAML o passo a passo para instalar, configurar e testar a aplicação.
+
+mkdir -p .github/workflows
