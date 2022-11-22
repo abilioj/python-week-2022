@@ -124,3 +124,23 @@ poetry add requests --dev
 # em .github/workflows/ci.yaml podemos declarar no formato YAML o passo a passo para instalar, configurar e testar a aplicação.
 
 mkdir -p .github/workflows
+# criarmos nesta pasta um arquivo .github/workflows/main.yaml
+
+# ----------------------------------------------------------------
+#docker
+# Para fazer o build.
+docker build -t beerlog/prod --file docker/Dockerfile .
+
+# Para rodar
+docker run -p 8000:8000 beerlog/prod
+
+# ou para alterar a porta
+docker run -p 8000:5000 -e PORT=5000 beerlog/prod
+
+# Para a imagem de development
+docker build --target development -t beerlog/dev --file docker/Dockerfile .
+
+# ----------------------------------------------------------------
+ # Analise de dados com Python
+ # jupyter
+  
