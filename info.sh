@@ -22,7 +22,7 @@ beerlog add "Lagunitas" "IPA" --flavor=7 --image=6 --cost=8
 -- sql
 	insert into Beer (name, style, flavor, image, cost, rate, date)
 	 values ("Brewdog", "NEIPA", 6, 5, 8, 6,"2022-09-09 9:23:50.219259");
-
+	 select * from beer ;
 -----------------------------------------------------------
 
     # valida campo de 1 a 10
@@ -105,24 +105,25 @@ export BEERLOG_DATABASE__url="sqlite:///testing.db"
 
 pytest -v
 # ----------------------------------------------------------------
-# Testes funcionais (ou de integração)
+	# Testes funcionais (ou de integração)
 
-poetry add requests --dev
+	poetry add requests --dev
 
-beerlog add Skol KornPA --flavor=1 --image=1 --cost=2
+	beerlog add Skol KornPA --flavor=1 --image=1 --cost=2
 
-# tests/test_functional_cli.py
-# tests/test_functional_api.py
-poetry add requests --dev
+	# tests/test_functional_cli.py
+	# tests/test_functional_api.py
+	poetry add requests --dev
 # ----------------------------------------------------------------
 # CI
-# Continuous Integration é o nome dado a uma prática de rodar testes a cada nova alteração no repositório,
-# a idéia é que desenvolvedores distribuidos possam integrar suas alterações continuamente pelo menos uma vez por dia.
-# Na prática não é bem assim que acontece, mas nós continuamos usando a sigla CI na verdade nós resignificamos a sigla 
-# CI e hoje essa palavra quer dizer esteira de testes automatizados.
-# No Github podemos configurar uma esteira de testes usando github actions.
-# em .github/workflows/ci.yaml podemos declarar no formato YAML o passo a passo para instalar, configurar e testar a aplicação.
+	# Continuous Integration é o nome dado a uma prática de rodar testes a cada nova alteração no repositório,
+	# a idéia é que desenvolvedores distribuidos possam integrar suas alterações continuamente pelo menos uma vez por dia.
+	# Na prática não é bem assim que acontece, mas nós continuamos usando a sigla CI na verdade nós resignificamos a sigla 
+	# CI e hoje essa palavra quer dizer esteira de testes automatizados.
+	# No Github podemos configurar uma esteira de testes usando github actions.
+	# em .github/workflows/ci.yaml podemos declarar no formato YAML o passo a passo para instalar, configurar e testar a aplicação.
 
+<<<<<<< HEAD
 mkdir -p .github/workflows
 # criarmos nesta pasta um arquivo .github/workflows/main.yaml
 
@@ -144,3 +145,6 @@ docker build --target development -t beerlog/dev --file docker/Dockerfile .
  # Analise de dados com Python
  # jupyter
   
+=======
+	mkdir -p .github/workflows
+>>>>>>> 85b4a06a9592d6f95e37dfa3b2371677d525d02b
